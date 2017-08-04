@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,13 +32,16 @@ public class Hello extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("name", "Romulo");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/index.jsp");
+		view.forward(request, response);
 		// TODO Auto-generated method stub
-		PrintWriter out = response.getWriter();
+		//PrintWriter out = response.getWriter();
 		
-		String name = request.getParameter("name");
-		String lastName = request.getParameter("lastname");
+		//String name = request.getParameter("name");
+		//String lastName = request.getParameter("lastname");
 		
-		out.println("Hello World - SON By: " + name +" "+ lastName);
+		//out.println("Hello World - SON By: " + name +" "+ lastName);
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -45,9 +49,18 @@ public class Hello extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		JSONObject json = formatJson(request.getReader());
-		System.out.println(json.get("name"));
-		System.out.println(json.toString());
+		JSONObject json = new JSONObject();
+		int i = 10;
+		
+		for(int a = 0; a < i; a++){
+			json.put("count", a);
+		}
+		
+		response.setContentType("application/json");
+		response.getWriter().write(json.toString());
+		//JSONObject json = formatJson(request.getReader());
+		//System.out.println(json.get("name"));
+		//System.out.println(json.toString());
 		//String body = request.getReader().lines().reduce("", (acc, actual)->acc+actual);
 		//System.out.println(body);
 	}
