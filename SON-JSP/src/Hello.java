@@ -33,18 +33,21 @@ public class Hello extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Integer>numbers = new ArrayList<Integer>();
 		
-		numbers.add(1);
-		numbers.add(2);
-		numbers.add(3);
-		numbers.add(4);
+		response.sendError(404,"NOT FOUND SON");
 		
-		request.setAttribute("name", "Romulo");
-		request.setAttribute("age", 17);
-		request.setAttribute("numbers", numbers);
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/index.jsp");
-		view.forward(request, response);
+		//List<Integer>numbers = new ArrayList<Integer>();
+		
+		//numbers.add(1);
+		//numbers.add(2);
+		//numbers.add(3);
+		//numbers.add(4);
+		
+		//request.setAttribute("name", "Romulo");
+		//request.setAttribute("age", 17);
+		//request.setAttribute("numbers", numbers);
+		// view = request.getRequestDispatcher("/WEB-INF/index.jsp");
+		//view.forward(request, response);
 		// TODO Auto-generated method stub
 		//PrintWriter out = response.getWriter();
 		
